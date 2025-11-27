@@ -7,7 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 基礎設定 (第六版排版 - 尺寸優化) --- */
+        /* --- 基礎設定 --- */
         :root {
             --bg-color: #FDF5E6; 
             --text-color: #1a1a1a;
@@ -29,16 +29,16 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Noto Sans TC', "Microsoft JhengHei", "PingFang TC", sans-serif; /* 主要中文和系統字體 */
+            font-family: 'Noto Sans TC', "Microsoft JhengHei", "PingFang TC", sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 1.5s ease, color 1.5s ease;
             height: 100vh;
-            min-height: 100vh; /* 確保最小高度為視窗高度 */
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden; /* 只隱藏水平溢出 */
+            overflow-x: hidden;
             font-size: 15px;
             box-sizing: border-box;
         }
@@ -47,24 +47,24 @@
             width: 100%;
             max-width: 600px;
             height: 100%;
-            max-height: 100vh; /* 手機上，最大高度限制為視窗高度 */
+            max-height: 100vh;
             background: var(--box-bg);
             display: flex;
             flex-direction: column;
             box-shadow: 0 0 15px rgba(0,0,0,0.2); 
             position: relative;
             border-radius: 0;
-            margin: 5px; /* 為手機邊緣留出間隙 */
+            margin: 5px;
             box-sizing: border-box;
-            overflow: hidden; /* 確保內容不會溢出容器 */
+            overflow: hidden;
         }
 
         @media (min-width: 601px) {
             #game-container {
-                height: 90vh; /* 電腦版維持 90vh */
+                height: 90vh;
                 border: 1px solid var(--border-dark);
-                margin: 0; /* 電腦版移除間隙 */
-                border-radius: 8px; /* 電腦版增加圓角 */
+                margin: 0;
+                border-radius: 8px;
             }
         }
 
@@ -72,14 +72,16 @@
             padding: 15px;
             text-align: center;
             border-bottom: 1px solid var(--border-light);
-            font-family: 'Creepster', cursive; /* 標題使用恐怖字體 */
-            font-weight: 400; /* Creepster 字體權重設定 */
-            font-size: 1.8rem; /* 增大標題字體 */
+            font-family: 'Creepster', cursive;
+            font-weight: 400;
+            font-size: 1.8rem;
             color: var(--accent-color);
-            letter-spacing: 2px; /* 增加字距 */
+            letter-spacing: 2px;
             text-transform: uppercase;
-            background-color: var(--box-bg); /* 確保標題背景與容器一致 */
+            background-color: var(--box-bg);
         }
+        
+        /* ... (省略了與圖片/動畫無關的 NPC/訊息/按鈕 CSS 保持簡潔) ... */
         
         /* --- 人物名稱顏色設定 --- */
         .npc::before {
@@ -90,10 +92,10 @@
             font-size: 0.85rem;
             font-weight: 700;
             background: var(--bg-color); 
-            padding: 0 8px; /* 增加內邊距 */
+            padding: 0 8px;
             border: 1px solid var(--border-light);
             box-shadow: 1px 1px 0 var(--border-light);
-            border-radius: 4px; /* 圓角 */
+            border-radius: 4px;
             z-index: 2;
         }
         
@@ -125,13 +127,13 @@
             position: relative;
             word-wrap: break-word;
             font-size: 0.95rem; 
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1); /* 更柔和的陰影 */
-            border-radius: 8px; /* 圓角 */
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         }
 
         .message:hover {
-            transform: translateY(-2px); /* 輕微上浮效果 */
+            transform: translateY(-2px);
             box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
         }
 
@@ -148,7 +150,7 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
             padding: 8px 0;
             margin: 8px 0;
-            border-radius: 0; /* 系統訊息不加圓角 */
+            border-radius: 0;
         }
 
         .npc {
@@ -157,7 +159,7 @@
             color: #000;
             margin-top: 25px;
             margin-left: 5px;
-            border-bottom-left-radius: 0; /* NPC訊息左下角尖角 */
+            border-bottom-left-radius: 0;
         }
 
         .player {
@@ -166,7 +168,7 @@
             color: #fff;
             border: 1px solid var(--accent-color);
             margin-right: 5px;
-            border-bottom-right-radius: 0; /* 玩家訊息右下角尖角 */
+            border-bottom-right-radius: 0;
         }
 
         #controls-area {
@@ -175,30 +177,30 @@
             border-top: 1px solid var(--border-dark);
             display: flex;
             flex-direction: column;
-            gap: 12px; /* 增加按鈕間距 */
+            gap: 12px;
             min-height: 140px;
             justify-content: center;
-            background-color: var(--box-bg); /* 與主容器背景保持一致 */
+            background-color: var(--box-bg);
         }
 
         button {
-            padding: 14px 18px; /* 增加按鈕點擊區域 */
+            padding: 14px 18px;
             border: 1px solid var(--border-dark);
-            border-radius: 6px; /* 輕微圓角 */
+            border-radius: 6px;
             background: #fff;
             font-family: 'Noto Sans TC', sans-serif;
-            font-size: 0.95rem; /* 稍微增大字體 */
+            font-size: 0.95rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease; /* 更流暢的過渡 */
+            transition: all 0.2s ease;
             box-shadow: 2px 2px 0px rgba(0,0,0,0.08);
             color: #000;
             text-align: left;
-            position: relative; /* 為了可能添加的裝飾 */
+            position: relative;
         }
         
         button:hover {
-            background-color: var(--accent-color); /* Hover 時變色 */
+            background-color: var(--accent-color);
             color: #fff;
             transform: translateY(-2px);
             box-shadow: 3px 3px 6px rgba(0,0,0,0.15);
@@ -210,82 +212,43 @@
             box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* --- 音量控制按鈕 --- */
+        /* --- QTE / 音量控制 CSS (省略) --- */
         #volume-control {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%; /* 圓形按鈕 */
-            background-color: rgba(0, 0, 0, 0.6); /* 半透明深色 */
-            color: #fff;
-            border: none;
-            font-size: 1.2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: background-color 0.2s ease;
-            padding: 0; /* 移除預設 padding */
-            line-height: 1; /* 確保圖標垂直居中 */
+            position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.6); color: #fff; border: none; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: background-color 0.2s ease; padding: 0; line-height: 1;
         }
-
-        #volume-control:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            transform: scale(1.05);
-        }
-
-        #volume-icon {
-            line-height: 1;
-        }
-
-        /* QTE 視覺效果 */
-        #qte-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); /* 更深色的背景 */ display: none; flex-direction: column; justify-content: center; align-items: center; color: white; z-index: 50; }
-        #qte-prompt { 
-            font-family: 'Noto Sans TC', sans-serif; /* QTE 提示也用新字體 */
-            font-size: 2.2rem; /* 稍微增大 */
-            margin-bottom: 20px; 
-            color: var(--qte-color); 
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* 更明顯的陰影 */
-            animation: pulseText 1s infinite alternate; /* 新的文本脈衝動畫 */
-        }
-        #qte-key { 
-            font-family: 'Creepster', cursive; /* QTE 按鍵用恐怖字體 */
-            font-size: 6.5rem; 
-            font-weight: bold; 
-            border: 4px solid var(--qte-color); 
-            padding: 10px 30px; 
-            border-radius: 8px; /* 輕微圓角 */
-            animation: pulse 0.7s infinite alternate, shake 0.5s infinite; /* 結合脈衝和輕微晃動 */
-            background: rgba(255, 255, 255, 0.15); /* 輕微背景色 */
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-        }
+        #volume-control:hover { background-color: rgba(0, 0, 0, 0.8); transform: scale(1.05); }
+        #volume-icon { line-height: 1; }
+        #qte-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); display: none; flex-direction: column; justify-content: center; align-items: center; color: white; z-index: 50; }
+        #qte-prompt { font-family: 'Noto Sans TC', sans-serif; font-size: 2.2rem; margin-bottom: 20px; color: var(--qte-color); text-shadow: 0 0 15px rgba(255, 0, 0, 0.7); animation: pulseText 1s infinite alternate; }
+        #qte-key { font-family: 'Creepster', cursive; font-size: 6.5rem; font-weight: bold; border: 4px solid var(--qte-color); padding: 10px 30px; border-radius: 8px; animation: pulse 0.7s infinite alternate, shake 0.5s infinite; background: rgba(255, 255, 255, 0.15); box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
         #qte-timer { margin-top: 25px; width: 220px; height: 12px; background: #555; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.5); }
-        #qte-bar { height: 100%; background: linear-gradient(to right, var(--qte-color), #FF5722); /* 漸層條 */ width: 100%; transition: width linear; }
+        #qte-bar { height: 100%; background: linear-gradient(to right, var(--qte-color), #FF5722); width: 100%; transition: width linear; }
         @keyframes pulse { from { transform: scale(1); opacity: 1; } to { transform: scale(1.08); opacity: 0.9; } }
         @keyframes pulseText { from { text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); } to { text-shadow: 0 0 20px rgba(255, 0, 0, 0.9); } }
         @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-2px) translateY(-1px) rotate(0.5deg); }
-            50% { transform: translateX(2px) translateY(1px) rotate(-0.5deg); }
-            75% { transform: translateX(-1px) translateY(2px) rotate(0.5deg); }
+            0% { transform: translateX(0); } 25% { transform: translateX(-2px) translateY(-1px) rotate(0.5deg); }
+            50% { transform: translateX(2px) translateY(1px) rotate(-0.5deg); } 75% { transform: translateX(-1px) translateY(2px) rotate(0.5deg); }
             100% { transform: translateX(0); }
         }
-
-        .text-red { color: #D32F2F !important; font-weight: bold; } /* 使用 QTE 紅色 */
+        .text-red { color: #D32F2F !important; font-weight: bold; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 修正的起始畫面 CSS --- */
+        /* --- 封面背景圖片設定 --- */
         #start-screen {
             position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000; 
+            /* ********** 用戶指定的圖片名稱 ********** */
+            background-image: url('background-image.jpg'); 
+            /* ************************************** */
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            background-color: rgba(0, 0, 0, 0.7); 
+            background-blend-mode: darken; 
+
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -296,28 +259,28 @@
             cursor: pointer;
             transition: opacity 1s ease;
             padding: 20px;
-            box-sizing: border-box; /* 確保 padding 不會導致溢出 */
+            box-sizing: border-box;
         }
 
         #start-screen h1 {
-            font-family: 'Creepster', cursive; /* 標題使用恐怖字體 */
-            font-size: 3.5rem; /* 增大標題字體 */
+            font-family: 'Creepster', cursive;
+            font-size: 3.5rem;
             margin-bottom: 15px;
             letter-spacing: 3px;
             color: #FFD700; 
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* 更強烈的文字陰影 */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
             width: 100%; 
-            max-width: 90%; /* 限制最大寬度，避免過寬 */
-            animation: pulseText 2s infinite alternate; /* 讓標題有脈衝效果 */
+            max-width: 90%;
+            animation: pulseText 2s infinite alternate;
         }
 
         #start-screen p {
             font-family: 'Noto Sans TC', sans-serif;
-            font-size: 1.2rem; /* 稍微增大段落字體 */
+            font-size: 1.2rem;
             margin-top: 15px;
-            color: #CCC; /* 稍微亮一些的灰色 */
+            color: #CCC;
             width: 100%; 
-            max-width: 90%; /* 限制最大寬度 */
+            max-width: 90%;
             line-height: 1.6;
         }
 
@@ -327,55 +290,56 @@
             margin-top: 30px;
         }
 
-        /* 深色模式調整 */
-        body[data-theme='dark'] {
-            --text-color: #EEE;
-            --box-bg: rgba(20, 20, 20, 0.95);
-            --border-light: #555;
-            --border-dark: #777;
-            --system-text: #AAA;
-            --accent-color: #8b0000; /* 深色模式強調色 */
-            --npc-bg: #333; /* 深色模式 NPC 訊息背景 */
-        }
-
-        body[data-theme='dark'] header {
-            color: var(--accent-color);
-            border-bottom-color: var(--border-dark);
-            background-color: var(--box-bg);
-        }
-
-        body[data-theme='dark'] .npc::before {
-            background: var(--box-bg);
-            border-color: var(--border-dark);
-            box-shadow: 1px 1px 0 var(--border-dark);
-        }
-
-        body[data-theme='dark'] .message {
-            border-color: var(--border-dark);
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-        }
-
-        body[data-theme='dark'] .player {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
+        /* --- 隨機潑血/故障動畫 --- */
+        #blood-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 允許點擊穿透 */
+            z-index: 40; /* 位於遊戲內容之上，QTE 之下 */
+            opacity: 0;
         }
         
+        .blood-flash {
+            animation: bloodFlicker 0.4s 1; /* 播放一次，持續 0.4 秒 */
+        }
+
+        @keyframes bloodFlicker {
+            0% { opacity: 0; }
+            30% { opacity: 0.3; background-color: rgba(139, 0, 0, 0.8); } /* 紅色血光 */
+            40% { opacity: 0; }
+            50% { opacity: 0.4; background-color: rgba(0, 0, 0, 0.9); } /* 黑色故障 */
+            60% { opacity: 0; }
+            80% { opacity: 0.5; background-color: rgba(255, 0, 0, 0.6); }
+            100% { opacity: 0; }
+        }
+        
+        /* --- 深色模式調整 (省略) --- */
+        body[data-theme='dark'] {
+            --text-color: #EEE; --box-bg: rgba(20, 20, 20, 0.95); --border-light: #555; --border-dark: #777; --system-text: #AAA; --accent-color: #8b0000; --npc-bg: #333;
+        }
+        body[data-theme='dark'] header {
+            color: var(--accent-color); border-bottom-color: var(--border-dark); background-color: var(--box-bg);
+        }
+        body[data-theme='dark'] .npc::before {
+            background: var(--box-bg); border-color: var(--border-dark); box-shadow: 1px 1px 0 var(--border-dark);
+        }
+        body[data-theme='dark'] .message {
+            border-color: var(--border-dark); box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+        body[data-theme='dark'] .player {
+            background: var(--accent-color); border-color: var(--accent-color);
+        }
         body[data-theme='dark'] #controls-area {
-            background: var(--box-bg);
-            border-top-color: var(--border-dark);
+            background: var(--box-bg); border-top-color: var(--border-dark);
         }
-
         body[data-theme='dark'] button {
-            background: #444;
-            color: #EEE;
-            border-color: #666;
-            box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+            background: #444; color: #EEE; border-color: #666; box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
         }
-
         body[data-theme='dark'] button:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #fff;
+            background-color: var(--accent-color); border-color: var(--accent-color); color: #fff;
         }
 
     </style>
@@ -391,6 +355,8 @@
     <button id="volume-control">
         <span id="volume-icon">🔊</span> 
     </button>
+    
+    <div id="blood-overlay"></div>
     
     <div id="log-area"></div>
     <div id="controls-area"></div>
@@ -413,15 +379,9 @@
 <script>
     // --- 遊戲狀態 ---
     let gameState = {
-        hasRuleBook: false,
-        hasKitchenKey: false, // 儲藏室鑰匙 (生鏽的鑰匙)
-        hasLibraryCode: false,
-        hasLockerKey: false,   // 兒童儲物櫃鑰匙
-        hasTapeRecorder: false,
-        hasCrowbar: false,     // 鐵撬
-        hasMapFragment: false, // 地圖碎片
-        hasCabinetKey: false,  // 新增：檔案櫃鑰匙
-        sanity: 100
+        hasRuleBook: false, hasKitchenKey: false, hasLibraryCode: false, 
+        hasLockerKey: false, hasTapeRecorder: false, hasCrowbar: false, 
+        hasMapFragment: false, hasCabinetKey: false, sanity: 100
     };
 
     function resetGame() {
@@ -432,9 +392,10 @@
         };
         logArea.innerHTML = '';
         currentBGM = null;
+        clearInterval(bloodFlashInterval); // 遊戲重置時，清除閃爍計時器
     }
 
-    // --- 裝置偵測與音效控制 (與先前版本保持一致) ---
+    // --- 音效/QTE 核心邏輯 (保持不變) ---
     const bgmPlayer = document.getElementById('bgm-player');
     const sfxPlayer = document.getElementById('sfx-player');
     const volumeIcon = document.getElementById('volume-icon');
@@ -442,55 +403,32 @@
     let isMuted = false; 
     let currentBGM = null;
     
-    // 偵測是否為觸控裝置 (手機/平板)
     function isTouchDevice() {
-        return ('ontouchstart' in window) || 
-               (navigator.maxTouchPoints > 0) || 
-               (navigator.msMaxTouchPoints > 0);
+        return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
     }
     const isMobile = isTouchDevice();
 
     function playBGM(src, volume = 0.4) {
         if (currentBGM === src) return;
-        bgmPlayer.pause();
-        bgmPlayer.src = src;
-        bgmPlayer.volume = volume;
-        currentBGM = src;
-        if (!isMuted) {
-            bgmPlayer.play().catch(e => console.warn("BGM play failed."));
-        }
+        bgmPlayer.pause(); bgmPlayer.src = src; bgmPlayer.volume = volume; currentBGM = src;
+        if (!isMuted) { bgmPlayer.play().catch(e => console.warn("BGM play failed.")); }
     }
-
-    function stopBGM() {
-        bgmPlayer.pause();
-        currentBGM = null;
-    }
-
+    function stopBGM() { bgmPlayer.pause(); currentBGM = null; }
     function playSFX(src, volume = 0.8) {
-        sfxPlayer.src = src;
-        sfxPlayer.volume = volume;
-        if (!isMuted) {
-            sfxPlayer.play().catch(e => console.warn("SFX play failed:"));
-        }
+        sfxPlayer.src = src; sfxPlayer.volume = volume;
+        if (!isMuted) { sfxPlayer.play().catch(e => console.warn("SFX play failed:")); }
     }
-
     function toggleMute() {
         isMuted = !isMuted;
         if (isMuted) {
-            bgmPlayer.pause();
-            sfxPlayer.volume = 0;
-            volumeIcon.textContent = '🔇';
+            bgmPlayer.pause(); sfxPlayer.volume = 0; volumeIcon.textContent = '🔇';
         } else {
-            if (currentBGM) {
-                bgmPlayer.play().catch(e => console.warn("BGM play failed after unmute:"));
-            }
-            sfxPlayer.volume = 0.8; 
-            volumeIcon.textContent = '🔊';
+            if (currentBGM) { bgmPlayer.play().catch(e => console.warn("BGM play failed after unmute:")); }
+            sfxPlayer.volume = 0.8; volumeIcon.textContent = '🔊';
         }
     }
     volumeControl.onclick = toggleMute;
 
-    // --- QTE 核心邏輯 (與先前版本保持一致) ---
     const qteOverlay = document.getElementById('qte-overlay');
     const qteKeyDisplay = document.getElementById('qte-key');
     const qteBar = document.getElementById('qte-bar');
@@ -500,87 +438,87 @@
     let qteTapListener = null;
 
     function endQTE() {
-        qteOverlay.style.display = 'none';
-        qteBar.style.transitionDuration = '0ms'; 
-        // 確保清理所有監聽器
-        if (qteKeyListener) {
-            document.removeEventListener('keydown', qteKeyListener);
-            qteKeyListener = null;
-        }
-        if (qteTapListener) {
-            qteOverlay.removeEventListener('touchstart', qteTapListener);
-            qteTapListener = null;
-        }
+        qteOverlay.style.display = 'none'; qteBar.style.transitionDuration = '0ms'; 
+        if (qteKeyListener) { document.removeEventListener('keydown', qteKeyListener); qteKeyListener = null; }
+        if (qteTapListener) { qteOverlay.removeEventListener('touchstart', qteTapListener); qteTapListener = null; }
     }
 
     function startQTE(targetKey, duration, successScene, failScene, promptText) {
-        endQTE(); // 啟動前先清理，確保沒有殘留的監聽器
-        
+        endQTE(); // 清理
+        clearInterval(bloodFlashInterval); // QTE 期間暫停隨機閃爍
+
         qteOverlay.style.display = 'flex';
         controlsArea.innerHTML = ''; 
-
-        // 使用「緊急應變」作為預設提示，除非有提供自定義文本
         qtePrompt.textContent = promptText || '🚨 緊急應變 🚨';
-
         qteBar.style.width = '100%';
         qteBar.style.transitionDuration = `${duration}ms`;
 
-        setTimeout(() => {
-            qteBar.style.width = '0%';
-        }, 50);
+        setTimeout(() => { qteBar.style.width = '0%'; }, 50);
 
-        // 設定時間到期失敗
         qteTimeout = setTimeout(() => {
-            endQTE();
-            renderScene(failScene);
+            endQTE(); renderScene(failScene);
         }, duration);
 
         if (isMobile) {
-            // --- 手機：快速點擊模式 ---
-            const tapGoal = 10; // 需要點擊的次數
-            let tapCount = 0;
-            
+            const tapGoal = 10; let tapCount = 0;
             qteKeyDisplay.textContent = 'TAP x' + tapGoal;
-            
             qteTapListener = (event) => {
-                event.preventDefault(); // 防止移動端預設行為，例如縮放
-                tapCount++;
+                event.preventDefault(); tapCount++;
                 qteKeyDisplay.textContent = 'TAP x' + (tapGoal - tapCount);
-                
-                if (tapCount >= tapGoal) {
-                    clearTimeout(qteTimeout);
-                    endQTE();
-                    renderScene(successScene);
-                }
+                if (tapCount >= tapGoal) { clearTimeout(qteTimeout); endQTE(); renderScene(successScene); }
             };
             qteOverlay.addEventListener('touchstart', qteTapListener);
-
         } else {
-            // --- 電腦：鍵盤按鍵模式 ---
             qteKeyDisplay.textContent = targetKey.toUpperCase();
-
             qteKeyListener = (event) => {
                 const key = event.key.toUpperCase();
-                // 成功判定
                 if (key === targetKey.toUpperCase()) {
-                    clearTimeout(qteTimeout);
-                    endQTE();
-                    renderScene(successScene);
-                // 失敗判定：按了其他 QTE 相關的鍵
+                    clearTimeout(qteTimeout); endQTE(); renderScene(successScene);
                 } else if (['A', 'D', 'W', 'S', 'J', 'K', 'L'].includes(key)) {
-                    clearTimeout(qteTimeout);
-                    endQTE();
-                    renderScene(failScene);
+                    clearTimeout(qteTimeout); endQTE(); renderScene(failScene);
                 }
             };
             document.addEventListener('keydown', qteKeyListener);
         }
     }
 
-    // --- 故事腳本 ---
+    // --- 隨機潑血動畫邏輯 ---
+    const bloodOverlay = document.getElementById('blood-overlay');
+    let bloodFlashInterval = null;
+
+    function triggerBloodFlash() {
+        // 播放隨機音效
+        const flashSFX = ['sfx_static1.mp3', 'sfx_static2.mp3']; // 假設你準備了故障音效
+        // 如果沒有音效，可以先註釋掉這行
+        // playSFX(flashSFX[Math.floor(Math.random() * flashSFX.length)], 0.5); 
+        
+        // 觸發 CSS 動畫
+        bloodOverlay.classList.remove('blood-flash');
+        // 必須強制重排才能重複播放動畫
+        void bloodOverlay.offsetWidth; 
+        bloodOverlay.classList.add('blood-flash');
+    }
+
+    function startBloodFlashTimer() {
+        // 清除任何舊的計時器
+        clearInterval(bloodFlashInterval); 
+        
+        // 隨機在 3 到 8 秒之間觸發一次閃爍
+        const minDelay = 3000;
+        const maxDelay = 8000;
+        const randomDelay = Math.random() * (maxDelay - minDelay) + minDelay;
+        
+        bloodFlashInterval = setInterval(() => {
+            triggerBloodFlash();
+            // 每次觸發後重新計算下次的隨機延遲
+            clearInterval(bloodFlashInterval);
+            startBloodFlashTimer();
+        }, randomDelay);
+    }
+    
+    // --- 故事腳本 (與先前版本保持一致) ---
     const story = {
-        start: {
-            bg: "#FDF5E6", title: "序章：異變", clearScreen: true,
+        start: { bg: "#FDF5E6", title: "序章：異變", clearScreen: true,
             messages: [
                 { sender: "system", text: "你感覺喉嚨裡像是塞滿了棉花，呼吸困難。" },
                 { sender: "system", text: "睜開眼，這是一個充滿霉味的辦公室。牆上的時鐘倒著走。" },
@@ -593,8 +531,7 @@
                 { text: "不理會，直接回應門外的人", next: "ignore_note" }
             ]
         },
-        read_note: {
-            bg: "#ECEFF1",
+        read_note: { bg: "#ECEFF1",
             messages: [
                 { sender: "system", text: "字跡非常用力，甚至劃破了紙張：" },
                 { sender: "system", text: "1. 這裡不是幼兒園，是<span class='text-red'>飼育場</span>。\n2. 孩子們只吃紅色的肉。\n3. 如果聽到笑聲，<span class='text-red'>不要回頭</span>。\n4. <span class='text-red'>整個幼稚園的鏡子都不能直視</span>。" },
@@ -603,8 +540,7 @@
             effect: () => { gameState.hasRuleBook = true; }, 
             choices: [{ text: "將紙條揉爛吞進肚子 (銷毀證據)", next: "office_investigate" }]
         },
-        ignore_note: {
-            bg: "#FDF5E6",
+        ignore_note: { bg: "#FDF5E6",
             messages: [
                 { sender: "player", text: "「不管了，大概是誰的惡作劇。」" },
                 { sender: "system", text: "你剛站起身，紙條突然無火自燃，化為灰燼。" }
@@ -612,8 +548,7 @@
             choices: [{ text: "在助手進來前，先調查辦公室", next: "office_investigate" }]
         },
         
-        office_investigate: {
-            bg: "#FDF5E6",
+        office_investigate: { bg: "#FDF5E6",
             messages: [
                 { sender: "system", text: "門外的聲音安靜下來了。這是您唯一的機會。校長辦公室內很亂。" }
             ],
@@ -625,9 +560,7 @@
             ]
         },
 
-        find_tape_recorder: {
-            bg: "#FDF5E6",
-            effect: () => { gameState.hasTapeRecorder = true; },
+        find_tape_recorder: { bg: "#FDF5E6", effect: () => { gameState.hasTapeRecorder = true; },
             messages: [
                 { sender: "system", text: "您在抽屜深處發現一個老舊的錄音機。上面沾滿了暗紅色的油漬。" },
                 { sender: "system", text: "錄音機旁有一張紙條：『不要讓他們聽到。』" }
@@ -637,23 +570,16 @@
                 { text: "仔細搜索抽屜的底部", next: "search_drawer_thoroughly" } 
             ]
         },
-        // 仔細搜索抽屜
-        search_drawer_thoroughly: {
-            bg: "#FDF5E6",
-            effect: () => { gameState.hasCabinetKey = true; },
+        search_drawer_thoroughly: { bg: "#FDF5E6", effect: () => { gameState.hasCabinetKey = true; },
             messages: [
                 { sender: "system", text: "你在抽屜的角落摸到一個冰冷的金屬物。這是一把<span class='text-red'>檔案櫃鑰匙</span>。" }
-            ]
-            ,
+            ],
             choices: [
                 { text: "將鑰匙藏好，返回調查辦公室", next: "office_investigate" }, 
                 { text: "將鑰匙藏好，直接開門面對助手", next: "meet_assistant_door" }
             ]
         },
-
-
-        listen_to_tape: {
-            bg: "#1a1a1a", sfx: 'sfx_tension.mp3', textColor: "#FFF",
+        listen_to_tape: { bg: "#1a1a1a", sfx: 'sfx_tension.mp3', textColor: "#FFF",
             messages: [
                 { sender: "system", text: "（沙沙聲... 尖銳的喘氣聲）" },
                 { sender: "npc", name: "前任園長", class: "oldprincipal", text: "（微弱的男聲）它... 它們需要... 需要的是恐懼... 絕對不能露出破綻... 食物... 食物是恐懼...（滋——滋——）" },
@@ -662,32 +588,15 @@
             choices: [{ text: "鎮定下來，開門面對門外的助手", next: "meet_assistant_door" }]
         },
         
-        // 檢查檔案櫃邏輯
-        check_filing_cabinet: {
-            messages: [],
-            effect: () => {
-                if (gameState.hasCabinetKey) {
-                    renderScene('unlock_cabinet');
-                } else {
-                    renderScene('cabinet_locked');
-                }
-            },
-            choices: []
-        },
-        cabinet_locked: {
-            bg: "#FDF5E6",
-            messages: [
-                { sender: "system", text: "檔案櫃鎖得非常緊，需要一把特殊的鑰匙。" }
-            ],
+        check_filing_cabinet: { messages: [], effect: () => { gameState.hasCabinetKey ? renderScene('unlock_cabinet') : renderScene('cabinet_locked'); }, choices: [] },
+        cabinet_locked: { bg: "#FDF5E6",
+            messages: [ { sender: "system", text: "檔案櫃鎖得非常緊，需要一把特殊的鑰匙。" } ],
             choices: [
                 { text: "返回調查", next: "office_investigate" },
                 { text: "直接開門面對門外的助手", next: "meet_assistant_door" }
             ]
         },
-        // 解鎖檔案櫃
-        unlock_cabinet: {
-            bg: "#FDF5E6",
-            effect: () => { gameState.hasLibraryCode = true; }, // 直接給予逃生密碼
+        unlock_cabinet: { bg: "#FDF5E6", effect: () => { gameState.hasLibraryCode = true; },
             messages: [
                 { sender: "system", text: "你用鑰匙打開了檔案櫃，裡面只有一份文件，標題寫著：『二十二號實驗體：處理紀錄』" },
                 { sender: "system", text: "文件底部有一串被紅筆圈起來的數字：<span class='text-red'>22</span>。" },
@@ -698,8 +607,7 @@
             ]
         },
         
-        meet_assistant_door: {
-            bg: "#CFD8DC",
+        meet_assistant_door: { bg: "#CFD8DC",
             messages: [
                 { sender: "system", text: "你打開門。一個穿著粉色圍裙的女人站在那裡。" },
                 { sender: "npc", name: "助手小林", class: "kobayashi", text: "園長早安。您的臉色不錯，看起來... 很有營養。" },
@@ -712,11 +620,7 @@
             ]
         },
 
-        // --- Chapter 1 ---
-        classroom_scene: {
-            bg: "#546E7A", 
-            // BGM 沿用序章 'bgm_mystery.mp3'
-            clearScreen: true, title: "第一章：詭異童謠",
+        classroom_scene: { bg: "#546E7A", clearScreen: true, title: "第一章：詭異童謠",
             messages: [
                 { sender: "system", text: "教室裡只有閃爍的日光燈。" },
                 { sender: "npc", name: "孩子們", class: "children", text: "（齊聲低吟）園長來了... 園長來了... 皮脆肉嫩的園長來了..." },
@@ -727,8 +631,7 @@
                 { text: "顫抖著詢問：「你們... 餓了嗎？」", next: "bad_end_early_feed" } 
             ]
         },
-        singing_time: {
-            bg: "#37474F", textColor: "#FFF",
+        singing_time: { bg: "#37474F", textColor: "#FFF",
             messages: [
                 { sender: "player", text: "「預備... 起！」" },
                 { sender: "system", text: "孩子們發出尖銳的噪音，你緊咬牙關。" },
@@ -736,9 +639,7 @@
             ],
             choices: [{ text: "趁小林離開時，觀察教室", next: "distraction_time" }]
         },
-        
-        distraction_time: {
-            bg: "#3E2723", textColor: "#FFF",
+        distraction_time: { bg: "#3E2723", textColor: "#FFF",
             messages: [
                 { sender: "system", text: "噪音是最好的掩護。" },
                 { sender: "system", text: "你注意到講台下的雜物堆裡，有一把**生鏽的鑰匙**，可能是兒童儲物櫃的。" }
@@ -748,25 +649,16 @@
                 { text: "保持站立不動", next: "stay_still" }
             ]
         },
-        get_locker_key: {
-            bg: "#3E2723",
-            effect: () => { gameState.hasLockerKey = true; }, 
-            messages: [
-                { sender: "system", text: "你成功拿到了鑰匙。它很小，是兒童儲物櫃的鑰匙。" }
-            ],
+        get_locker_key: { bg: "#3E2723", effect: () => { gameState.hasLockerKey = true; }, 
+            messages: [ { sender: "system", text: "你成功拿到了鑰匙。它很小，是兒童儲物櫃的鑰匙。" } ],
             choices: [{ text: "前往廚房準備午餐", next: "lunch_prep" }]
         },
-        stay_still: {
-            bg: "#3E2723",
-            messages: [
-                { sender: "system", text: "你決定將安全放在第一位，沒有去碰那個可疑的物品。" }
-            ],
+        stay_still: { bg: "#3E2723",
+            messages: [ { sender: "system", text: "你決定將安全放在第一位，沒有去碰那個可疑的物品。" } ],
             choices: [{ text: "前往廚房準備午餐", next: "lunch_prep" }]
         },
 
-        // --- Chapter 2 (BGM 切換為 Tension) ---
-        lunch_prep: {
-            bg: "#3E2723", bgm: 'bgm_tension.mp3', clearScreen: true, title: "第二章：屠宰場",
+        lunch_prep: { bg: "#3E2723", bgm: 'bgm_tension.mp3', clearScreen: true, title: "第二章：屠宰場",
             messages: [
                 { sender: "system", text: "你來到了廚房。這裡掛滿了肉鉤，鉤子上掛著穿著破爛西裝的「肉塊」。" },
                 { sender: "npc", name: "屠夫廚師", class: "chef", text: "肉... 新鮮的肉..." },
@@ -777,8 +669,7 @@
                 { text: "趁他背對時，搜查旁邊的髒衣籃", next: "kitchen_search" }
             ]
         },
-        kitchen_investigate: {
-            bg: "#B71C1C",
+        kitchen_investigate: { bg: "#B71C1C",
             messages: [
                 { sender: "npc", name: "屠夫廚師", class: "chef", text: "還差一點... 佐料不夠..." },
                 { sender: "system", text: "他猛然轉身，手裡的菜刀直指你的眉心。" },
@@ -789,9 +680,7 @@
                 { text: "尖叫逃跑", next: "bad_end_chef" } 
             ]
         },
-        kitchen_search: {
-            bg: "#4E342E",
-            effect: () => { gameState.hasKitchenKey = true; }, // 儲藏室鑰匙
+        kitchen_search: { bg: "#4E342E", effect: () => { gameState.hasKitchenKey = true; },
             messages: [
                 { sender: "system", text: "你趁廚師不注意，在髒衣籃裡發現一把生鏽的鑰匙。上面標籤寫著：「儲藏室」。" },
                 { sender: "player", text: "（這就是那把『生鏽的鑰匙』。）" }
@@ -799,9 +688,7 @@
             choices: [{ text: "將鑰匙藏好，假裝巡視", next: "lunch_service" }]
         },
 
-        // --- Chapter 3 ---
-        lunch_service: {
-            bg: "#212121", title: "第三章：聖餐", textColor: "#FFF",
+        lunch_service: { bg: "#212121", title: "第三章：聖餐", textColor: "#FFF",
             messages: [
                 { sender: "system", text: "正午十二點。餐廳裡死一般寂靜。" },
                 { sender: "system", text: "盤子裡盛著鮮紅色的肉塊，還在微微跳動。" },
@@ -814,9 +701,7 @@
             ]
         },
         
-        // --- 鑰匙使用分歧點 ---
-        survive_lunch: {
-            bg: "#1A237E",
+        survive_lunch: { bg: "#1A237E",
             messages: [
                 { sender: "npc", name: "助手小林", class: "kobayashi", text: "切... 真可惜。請允許我去巡查走廊，防止有「客人」亂跑。" },
                 { sender: "system", text: "孩子們開始進食。你獲得了短暫的自由。你該去哪裡？" }
@@ -828,9 +713,7 @@
             ]
         },
         
-        // --- 兒童儲物櫃鑰匙 (新增數字選擇邏輯) ---
-        use_locker_key: {
-            bg: "#5D4037",
+        use_locker_key: { bg: "#5D4037",
             messages: [
                 { sender: "system", text: "你回到教室。這把鑰匙能打開孩子們的儲物櫃。你回想起在調查辦公室時獲得的關鍵數字..." },
                 { sender: "system", text: "選擇你認為正確的儲物櫃號碼：" }
@@ -838,15 +721,12 @@
             choices: [
                 { text: "儲物櫃 2", next: "bad_end_locker_fail" },
                 { text: "儲物櫃 21", next: "bad_end_locker_fail" },
-                { text: "儲物櫃 22", next: "locker_success" }, // Correct
+                { text: "儲物櫃 22", next: "locker_success" },
                 { text: "儲物櫃 32", next: "bad_end_locker_fail" }
             ]
         },
         
-        // 正確打開儲物櫃 22
-        locker_success: {
-            bg: "#5D4037",
-            effect: () => { gameState.hasMapFragment = true; },
+        locker_success: { bg: "#5D4037", effect: () => { gameState.hasMapFragment = true; },
             messages: [
                 { sender: "system", text: "你打開了編號 22 的儲物櫃。裡面不是玩具，而是一張潦草的地圖，標註了從餐廳到圖書室之間的<span class='text-red'>所有鬆動地板</span>的位置。" },
                 { sender: "system", text: "【道具：地圖碎片已獲得。你現在能避開走廊的陷阱。】" }
@@ -854,57 +734,36 @@
             choices: [{ text: "前往圖書室", next: "post_hall_check" }] 
         },
 
-        // --- 儲藏室鑰匙 (高風險路徑) ---
-        go_to_storage: {
-            bg: "#1a1a1a", sfx: 'sfx_door.mp3', textColor: "#CCC",
+        go_to_storage: { bg: "#1a1a1a", sfx: 'sfx_door.mp3', textColor: "#CCC",
             messages: [
                 { sender: "system", text: "你打開了儲藏室的門，裡面充滿了血腥味和被肢解的肉塊。你看到角落躺著一把**鐵撬**。" }
             ],
             choices: [{ text: "撿起鐵撬 (高風險)", next: "storage_qte" }]
         },
-        storage_qte: {
-            bg: "#1a1a1a",
+        storage_qte: { bg: "#1a1a1a",
             effect: () => { 
                 gameState.hasCrowbar = true; 
-                const targetKey = 'S'; // 向後快速退開
+                const targetKey = 'S';
                 startQTE(targetKey, 1500, "storage_success", "bad_end_chef", isMobile ? "快速點擊，閃避攻擊！" : "剛撿起鐵撬，屠夫廚師從門口出現！快速按下 S 閃避！"); 
             },
-            messages: [
-                { sender: "system", text: "你剛握住鐵撬，身後響起了沉重的腳步聲！" }
-            ],
-            choices: []
+            messages: [ { sender: "system", text: "你剛握住鐵撬，身後響起了沉重的腳步聲！" } ], choices: []
         },
-        storage_success: {
-            bg: "#212121", textColor: "#FFF",
+        storage_success: { bg: "#212121", textColor: "#FFF",
             messages: [
                 { sender: "system", text: "你成功向後閃開，屠夫廚師的巨刃砍在了牆上。" },
                 { sender: "system", text: "【道具：鐵撬已獲得。】你趁他拔刀時，倉皇跑出儲藏室。" }
             ],
-            choices: [{ text: "前往圖書室 (繞過走廊)", next: "hallway_qte" }] // 無地圖，仍然要過走廊 QTE
+            choices: [{ text: "前往圖書室 (繞過走廊)", next: "hallway_qte" }]
         },
         
-        // --- 走廊 QTE 檢查點 ---
-        hallway_qte_check: {
-            messages: [],
-            effect: () => {
-                if (gameState.hasMapFragment) {
-                    renderScene('post_hall_check');
-                } else {
-                    renderScene('hallway_qte');
-                }
-            },
-            choices: []
-        },
+        hallway_qte_check: { messages: [], effect: () => { gameState.hasMapFragment ? renderScene('post_hall_check') : renderScene('hallway_qte'); }, choices: [] },
 
-        hallway_qte: {
-            bg: "#455A64",
+        hallway_qte: { bg: "#455A64",
             messages: [
                 { sender: "system", text: "走廊的木板發出尖銳的嘎吱聲！你感覺到身後有什麼東西正迅速靠近..." },
                 { sender: "system", text: isMobile ? "【🚨 緊急：快速點擊畫面以穩定腳步！ 🚨】" : "【🚨 緊急：快速按下 A 或 D 以穩定腳步！ 🚨】" }
             ],
-            choices: [
-                { text: "穩定腳步，避免發出聲音", next: "start_qte_1" }
-            ]
+            choices: [ { text: "穩定腳步，避免發出聲音", next: "start_qte_1" } ]
         },
         start_qte_1: {
             effect: () => {
@@ -912,52 +771,29 @@
                 const targetKey = keys[Math.floor(Math.random() * keys.length)];
                 startQTE(targetKey, 2000, "post_hall_check", "bad_end_refuse", isMobile ? "快速點擊畫面，穩住腳步！" : "快速按下按鍵，穩住腳步！"); 
             },
-            messages: [{ sender: "system", text: "緊急應變啟動中..." }],
-            choices: []
+            messages: [{ sender: "system", text: "緊急應變啟動中..." }], choices: []
         },
 
-        // --- NEW：守則 3 (笑聲) 檢查點 ---
-        post_hall_check: {
-            messages: [],
-            effect: () => {
-                // 如果有守則，則必須面對笑聲 QTE
-                if (gameState.hasRuleBook) {
-                    renderScene('laughter_check');
-                } else {
-                    // 沒有守則，直接進入圖書室
-                    renderScene('library_puzzle'); 
-                }
-            },
-            choices: []
-        },
+        post_hall_check: { messages: [], effect: () => { gameState.hasRuleBook ? renderScene('laughter_check') : renderScene('library_puzzle'); }, choices: [] },
 
-        // NEW LAUGHTER QTE SCENE (Rule 3)
-        laughter_check: {
-            bg: "#455A64",
-            sfx: 'sfx_tension.mp3', // 繼續使用緊張音效來模擬詭異的笑聲
+        laughter_check: { bg: "#455A64", sfx: 'sfx_tension.mp3',
             messages: [
                 { sender: "system", text: "你穿過走廊，身後傳來了一陣扭曲的、刺耳的孩童<span class='text-red'>嬉笑聲</span>！" },
                 { sender: "system", text: "（守則 3：如果聽到笑聲，<span class='text-red'>不要回頭</span>！）" },
                 { sender: "system", text: isMobile ? "【🚨 緊急：快速點擊畫面，保持面向前方！ 🚨】" : "【🚨 緊急：快速按下 S 鍵，保持面向前方！ 🚨】" }
             ],
-            choices: [
-                { text: "繼續前進，不回頭", next: "start_qte_laughter" }
-            ]
+            choices: [ { text: "繼續前進，不回頭", next: "start_qte_laughter" } ]
         },
         start_qte_laughter: {
             effect: () => {
                 const targetKey = 'S'; 
                 startQTE(targetKey, 1700, "library_puzzle", "bad_end_laughter", isMobile ? "快速點擊，不要回頭！" : "快速按下 S，不要回頭！"); 
             },
-            messages: [{ sender: "system", text: "緊急應變啟動中..." }],
-            choices: []
+            messages: [{ sender: "system", text: "緊急應變啟動中..." }], choices: []
         },
-        // --- End Rule 3 Check ---
 
 
-        // --- Chapter 4 ---
-        library_puzzle: {
-            bg: "#0D47A1", clearScreen: true, title: "第四章：禁區",
+        library_puzzle: { bg: "#0D47A1", clearScreen: true, title: "第四章：禁區",
             messages: [
                 { sender: "system", text: "你安全地進入了圖書室。房間中央有一面巨大的落地鏡，牆上掛著一張泛黃的紙條。" }
             ],
@@ -968,31 +804,24 @@
                 { text: "沒有鑰匙/密碼，只能硬闖逃生門", check: () => !gameState.hasLibraryCode && !gameState.hasCrowbar, next: "bad_end_refuse" }
             ]
         },
-        code_guess: {
-            bg: "#0D47A1",
+        code_guess: { bg: "#0D47A1", effect: () => { gameState.hasLibraryCode = true; }, 
             messages: [
                 { sender: "system", text: "你轉動了鏡子，發現背後寫著：『肉塊 = 7』。密碼是 15 + 7 = 22。你記住了密碼。" },
                 { sender: "system", text: "（守則 4：你避開了鏡子...）" }
             ],
-            effect: () => { gameState.hasLibraryCode = true; }, 
             choices: [{ text: "前往午睡室，準備逃脫", next: "nap_time_qte" }] 
         },
 
-        // 鐵撬破門的壞結局
-        bad_end_crowbar_break: {
-            bg: "#8B0000", sfx: 'sfx_jumpscare.mp3', textColor: "#FFF",
+        bad_end_crowbar_break: { bg: "#8B0000", sfx: 'sfx_jumpscare.mp3', textColor: "#FFF",
             messages: [
                 { sender: "system", text: "你用鐵撬開始撬動逃生門。巨大的噪音傳遍了整個幼稚園。" },
                 { sender: "system", text: "在門鎖被撬開前一秒，你聽見走廊傳來了極速奔跑的聲音——是小林。" },
                 { sender: "npc", name: "助手小林", class: "kobayashi", text: "吵死了！我以為你是個安靜的食物！" },
                 { sender: "system", text: "【結局 8：噪音引來的災難】" }
-            ],
-            choices: [{ text: "重新輪迴", next: "start" }] 
+            ], choices: [{ text: "重新輪迴", next: "start" }] 
         },
 
-        // --- 終章 ---
-        nap_time_qte: {
-            bg: "#000000", bgm: 'bgm_tension.mp3', clearScreen: true, title: "終章：生與死", textColor: "#CCC",
+        nap_time_qte: { bg: "#000000", bgm: 'bgm_tension.mp3', clearScreen: true, title: "終章：生與死", textColor: "#CCC",
             messages: [
                 { sender: "system", text: "午睡室裡死寂一片。助手小林正朝這裡走來！" },
                 { sender: "system", text: isMobile ? "【🚨 緊急：快速點擊畫面以躲入櫃子！ 🚨】" : "【🚨 緊急：快速按下 W 以躲入櫃子！ 🚨】" }
@@ -1004,11 +833,9 @@
                 const targetKey = 'W'; 
                 startQTE(targetKey, 1700, "nap_time_success", "bad_end_refuse", isMobile ? "快速點擊畫面，躲藏！" : "快速按下 W，躲藏！"); 
             },
-            messages: [{ sender: "system", text: "緊急應變啟動中..." }],
-            choices: []
+            messages: [{ sender: "system", text: "緊急應變啟動中..." }], choices: []
         },
-        nap_time_success: {
-            bg: "#000000", textColor: "#CCC",
+        nap_time_success: { bg: "#000000", textColor: "#CCC",
             messages: [
                 { sender: "system", text: "你成功躲入了衣櫃，小林從你身邊走過，沒有察覺。現在是輸入密碼的機會！" }
             ],
@@ -1018,7 +845,7 @@
             ]
         },
         
-        // --- 結局集 ---
+        // --- 結局集 (保持不變) ---
         bad_end_early_feed: { bg: "#000000", sfx: 'sfx_jumpscare.mp3', textColor: "#F00", messages: [ { sender: "system", text: "你不該問這個問題的。" }, { sender: "npc", name: "孩子們", class: "children", text: "餓了... 餓了！！！" }, { sender: "system", text: "【結局 1：飯前點心】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
         bad_end_panic: { bg: "#8B0000", sfx: 'sfx_jumpscare.mp3', textColor: "#FFF", messages: [ { sender: "system", text: "恐懼的味道是藏不住的。" }, { sender: "npc", name: "助手小林", class: "kobayashi", text: "啊... 原來是脆弱的人類啊。" }, { sender: "system", text: "【結局 2：偽裝失敗】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
         bad_end_chef: { bg: "#3E2723", textColor: "#FFF", messages: [ { sender: "system", text: "你不該背對一個屠夫。" }, { sender: "system", text: "冰冷的刀鋒從後頸切入，你的視線旋轉著飛了出去。" }, { sender: "system", text: "【結局 3：廚房意外】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
@@ -1026,46 +853,9 @@
         bad_end_refuse: { bg: "#000000", sfx: 'sfx_jumpscare.mp3', textColor: "#F00", messages: [ { sender: "system", text: "你沒有通過最終考驗，或者動作不夠快。" }, { sender: "npc", name: "怪物們", class: "children", text: "他被抓住了... 他是食物！" }, { sender: "system", text: "【結局 5：主菜】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
         bad_end_mirror: { bg: "#FFFFFF", sfx: 'sfx_jumpscare.mp3', textColor: "#8b0000", messages: [ { sender: "system", text: "你看到鏡子裡的自己裂開了，無數眼睛在黑色的血肉中掙扎。" }, { sender: "system", text: "【結局 6：鏡像詛咒】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
         good_end_escape: { bg: "#FFFFFF", textColor: "#000", messages: [ { sender: "system", text: "你輸入了密碼 22。電子鎖發出咔噠聲，後門開啟。" }, { sender: "system", text: "你衝出後門，外面的世界是一片荒蕪的廢墟。" }, { sender: "system", text: "【結局 7：倖存者】(True End)" } ], choices: [{ text: "重新開始遊戲", next: "start" }] },
-        
-        bad_end_laughter: { 
-            bg: "#8B0000", 
-            sfx: 'sfx_jumpscare.mp3', 
-            textColor: "#FFF", 
-            messages: [ 
-                { sender: "system", text: "你忍不住回頭看了一眼。" }, 
-                { sender: "system", text: "那不是孩子，那是一團由血肉和鋼絲組成的巨型蜘蛛，它的腹部不斷發出尖銳的笑聲..." }, 
-                { sender: "system", text: "【結局 9：回頭是岸】" } 
-            ], 
-            choices: [{ text: "重新輪迴", next: "start" }] 
-        },
-
-        bad_end_locker_fail: { 
-            bg: "#8B0000", 
-            sfx: 'sfx_jumpscare.mp3', 
-            textColor: "#FFF", 
-            messages: [ 
-                { sender: "system", text: "你用鑰匙打開了錯誤的儲物櫃。櫃門後彈出一個裝滿尖刺的鐵籠，將你壓在牆上！" }, 
-                { sender: "system", text: "尖叫聲引來了正在餐廳進食的孩子們。" }, 
-                { sender: "npc", name: "孩子們", class: "children", text: "還有甜點！" },
-                { sender: "system", text: "【結局 10：錯誤的選擇】" } 
-            ], 
-            choices: [{ text: "重新輪迴", next: "start" }] 
-        },
-        
-        // NEW BAD ENDING - 辦公室鏡子
-        bad_end_office_mirror: { 
-            bg: "#FFFFFF", 
-            sfx: 'sfx_jumpscare.mp3', 
-            textColor: "#8b0000", 
-            messages: [ 
-                { sender: "system", text: "你抬頭看向牆上的鏡子。鏡中的你裂開了，無數蠕動的黑色肢體正在從裂縫中伸出，將你的臉孔扭曲。" }, 
-                { sender: "system", text: "你應該記得守則 4 的警告..." },
-                { sender: "npc", name: "門外的聲音", class: "kobayashi", text: "咦？園長怎麼這麼快就壞掉了？" },
-                { sender: "system", text: "【結局 11：鏡像啟動】" } 
-            ], 
-            choices: [{ text: "重新輪迴", next: "start" }] 
-        },
-
+        bad_end_laughter: { bg: "#8B0000", sfx: 'sfx_jumpscare.mp3', textColor: "#FFF", messages: [ { sender: "system", text: "你忍不住回頭看了一眼。" }, { sender: "system", text: "那不是孩子，那是一團由血肉和鋼絲組成的巨型蜘蛛，它的腹部不斷發出尖銳的笑聲..." }, { sender: "system", text: "【結局 9：回頭是岸】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
+        bad_end_locker_fail: { bg: "#8B0000", sfx: 'sfx_jumpscare.mp3', textColor: "#FFF", messages: [ { sender: "system", text: "你用鑰匙打開了錯誤的儲物櫃。櫃門後彈出一個裝滿尖刺的鐵籠，將你壓在牆上！" }, { sender: "system", text: "尖叫聲引來了正在餐廳進食的孩子們。" }, { sender: "npc", name: "孩子們", class: "children", text: "還有甜點！" }, { sender: "system", text: "【結局 10：錯誤的選擇】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
+        bad_end_office_mirror: { bg: "#FFFFFF", sfx: 'sfx_jumpscare.mp3', textColor: "#8b0000", messages: [ { sender: "system", text: "你抬頭看向牆上的鏡子。鏡中的你裂開了，無數蠕動的黑色肢體正在從裂縫中伸出，將你的臉孔扭曲。" }, { sender: "system", text: "你應該記得守則 4 的警告..." }, { sender: "npc", name: "門外的聲音", class: "kobayashi", text: "咦？園長怎麼這麼快就壞掉了？" }, { sender: "system", text: "【結局 11：鏡像啟動】" } ], choices: [{ text: "重新輪迴", next: "start" }] },
     };
 
     // --- 核心渲染邏輯 ---
@@ -1080,11 +870,9 @@
             let i = 0;
             function type() {
                 if (i < text.length) {
-                    // Check for HTML tag start (for <span class='text-red'>...</span>)
                     if(text.charAt(i) === '<') {
                         let tag = '';
                         let tagStart = i;
-                        // Fast forward through the tag
                         while(text.charAt(i) !== '>' && i < text.length) {
                             tag += text.charAt(i);
                             i++;
@@ -1093,15 +881,11 @@
                             tag += '>';
                             i++;
                         }
-                        // Append the tag without typing delay
                         element.innerHTML = text.substring(0, i);
                     } else {
-                        // Regular character typing
                         i++;
                         element.innerHTML = text.substring(0, i);
-                        
                     }
-                    // 滾動到底部
                     setTimeout(type, speed);
                     logArea.scrollTop = logArea.scrollHeight;
                 } else {
@@ -1115,7 +899,6 @@
 
     function isColorDark(colorCode) {
         const hex = colorCode.replace('#', '');
-        // 判斷顏色是否為深色系
         const darks = ["000000", "212121", "B71C1C", "37474F", "4A148C", "3E2723", "1A237E", "8B0000", "455A64"];
         return darks.includes(hex.toUpperCase());
     }
@@ -1124,13 +907,22 @@
         
         const scene = story[sceneId];
         
+        // 1. 管理 BGM/SFX
         if (scene.bgm) { playBGM(scene.bgm); } 
         if (scene.sfx) { stopBGM(); playSFX(scene.sfx); } else if (sceneId.startsWith('bad_end')) { stopBGM(); playSFX('sfx_jumpscare.mp3'); }
         
         if(sceneId === 'start') { resetGame(); playBGM('bgm_mystery.mp3'); }
         
+        // 2. 隨機閃爍計時器
+        if (!sceneId.startsWith('start_qte') && !sceneId.startsWith('bad_end')) {
+            startBloodFlashTimer();
+        } else {
+            clearInterval(bloodFlashInterval); // QTE 和結局時暫停
+        }
+
         if(scene.effect) scene.effect();
 
+        // 3. 畫面清理和標題
         if(scene.clearScreen) {
             logArea.innerHTML = '';
             if(scene.title) {
@@ -1150,13 +942,14 @@
             }
         }
 
-        // 設置主題顏色
+        // 4. 設置主題顏色
         bodyElement.style.backgroundColor = scene.bg;
         const isDark = isColorDark(scene.bg);
         bodyElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
 
         controlsArea.innerHTML = ''; 
 
+        // 5. 渲染訊息
         for (let msg of scene.messages) {
             const msgDiv = document.createElement('div');
             msgDiv.classList.add('message');
@@ -1178,7 +971,7 @@
             await new Promise(r => setTimeout(r, 400));
         }
         
-        // 渲染按鈕
+        // 6. 渲染按鈕
         if (!sceneId.startsWith('start_qte')) {
             scene.choices.forEach(choice => {
                 if (choice.check && !choice.check()) return;
@@ -1191,7 +984,6 @@
     }
 
     window.onload = () => {
-        // 處理手機上的音訊播放限制
         startScreen.onclick = () => {
             startScreen.style.opacity = '0';
             setTimeout(() => {
