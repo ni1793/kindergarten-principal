@@ -303,7 +303,7 @@
         }
         
         .blood-flash {
-            animation: bloodFlicker 0.4s 1; /* 播放一次，持續 0.4 秒 */
+            animation: bloodFlicker 0.3s 1; /* 播放一次，持續 0.3 秒 */
         }
 
         @keyframes bloodFlicker {
@@ -490,7 +490,7 @@
         // 播放隨機音效
         const flashSFX = ['sfx_static1.mp3', 'sfx_static2.mp3']; // 假設你準備了故障音效
         // 如果沒有音效，可以先註釋掉這行
-        // playSFX(flashSFX[Math.floor(Math.random() * flashSFX.length)], 0.5); 
+        playSFX(flashSFX[Math.floor(Math.random() * flashSFX.length)], 0.5); 
         
         // 觸發 CSS 動畫
         bloodOverlay.classList.remove('blood-flash');
@@ -503,9 +503,9 @@
         // 清除任何舊的計時器
         clearInterval(bloodFlashInterval); 
         
-        // 隨機在 3 到 8 秒之間觸發一次閃爍
-        const minDelay = 3000;
-        const maxDelay = 8000;
+        // 隨機在 6 到 12 秒之間觸發一次閃爍
+        const minDelay = 6000;
+        const maxDelay = 12000;
         const randomDelay = Math.random() * (maxDelay - minDelay) + minDelay;
         
         bloodFlashInterval = setInterval(() => {
